@@ -1,0 +1,312 @@
+html,
+body {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+#renderCanvas {
+    width: 100%;
+    height: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#loadingScreen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    touch-action: none;
+}
+
+#loadingContainer {
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    padding: 1px;
+    margin: 20px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.progress-bar-fill {
+    display: block;
+    height: 10px;
+    background-color: #2441D6;
+    border-radius: 5px;
+    transition: width 200ms ease-in-out;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+#uiOverlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #FF000050; */
+    z-index: 10;
+    display: flex;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+#zoiToggleButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#vrToggleButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#infoToggleButton {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+#debug {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #00000090;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.button {
+    width: fit-content;
+    min-width: 30px;
+    padding: 5px;
+    height: 30px;
+    background-color: #00000090;
+    pointer-events: auto;
+    justify-content: center;
+    align-items: center;
+    border-style: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    touch-action: none;
+}
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 20;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    position: relative;
+    width: fit-content;
+    background-color: white;
+    margin: 40px;
+    padding: 10px;
+    border-style: none;
+    border-radius: 5px;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex: 1;
+    max-height: 90%;
+    animation-name: animateleft;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animateleft {
+    from {
+        left: -300px;
+        opacity: 0
+    }
+
+    to {
+        left: 0px;
+        opacity: 1
+    }
+}
+
+.zoiButton {
+    width: fit-content;
+    height: 30px;
+    border-style: none;
+    background-color: white;
+    justify-content: left;
+    text-align: left;
+    color: black;
+}
+
+.separator {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+}
+
+
+#CVModal-content {
+    position: relative;
+    width: fit-content;
+    max-width: 90%;
+    background-color: white;
+    border-style: none;
+    margin: 15% auto;
+    animation-name: animateBottom;
+    animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@keyframes animateBottom {
+    from {
+        bottom: -300px;
+        opacity: 0
+    }
+
+    to {
+        bottom: 0px;
+        opacity: 1
+    }
+}
+
+#CV-TextContent {
+    padding: 10px;
+    max-width: 45em;
+    flex : 1;
+}
+
+#CV-contact {
+    padding: 10px;
+    background-color: #422f1d;
+}
+
+.CV-Separator{
+    width: 100%;
+    height: 1.5px;
+    background-color: darkgrey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.7em;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4em;
+    color: darkgrey;
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em; 
+    
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#CV-ContactHeader {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.3em; 
+    color: white;
+    font-weight: lighter;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.CV-ContactButton {
+    background-color : #00000000;
+    border-style: none;
+    color: white;
+}
+
+#infoModal-content {
+    position: relative;
+    width: fit-content;
+    max-width: 50em;
+    background-color: white;
+    margin: 40px;
+    padding: 10px;
+    border-style: none;
+    border-radius: 5px;
+    display: flex;
+    flex-basis: auto;
+    flex-direction: column;
+    flex: 1;
+    animation-name: animateleft;
+    animation-duration: 0.4s
+}
+
+#info-Title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.5em; 
+    font-weight: bold;
+}
+
+#info-Text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1em; 
+    text-align: justify;
+    text-justify: inter-character;
+    margin-bottom: 10px;
+}

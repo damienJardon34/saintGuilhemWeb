@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="description"
+        content="A Virtual Tour of Saint Guilhem le Désert, one of the most beautiful french village. Made by Damien Jardon.">
+    <meta name="keywords" content="VR, Photogrammetry, Tourism, France">
+    <meta name="author" content="Damien Jardon">
+    <meta name="viewport"
+        content="viewport-fit=cover,width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=0" />
+
+    <title>Saint Guilhem le désert - Virtual Tour</title>
+    <!--- Link to the last version of BabylonJS --->
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <script src="https://cdn.babylonjs.com/gui/babylon.gui.js"></script>
+    
+    <!--- description of my scene --->
+    <script src="scene.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Saint Guilhem le désert - Virtual Tour" />
+    <meta property="og:url" content="https://damienjardon.fr/virtualTourism/stGuilhem/" />
+    <meta property="og:image" content="https://damienjardon.fr/virtualTourism/stGuilhem/preview.jpg" />
+    <meta property="og:video" content="https://damienjardon.fr/virtualTourism/stGuilhem/preview.mp4" />
+    <meta property="og:video:width" content="1280" />
+    <meta property="og:video:height" content="720" />
+    <meta property="og:description" content="A Virtual Tour of Saint Guilhem le Désert, one of the most beautiful french village.
+    Made by Damien Jardon." />
+</head>
+
+<body>
+    <div id="loadingScreen">
+        <div id="loadingContainer">
+            <img src="blason.png" width="100px" height="100px">
+            <div class="progress-bar">
+                <span id="loadingProgress" class="progress-bar-fill" style="width: 0%;"></span>
+            </div>
+        </div>
+    </div>
+    <div id="uiOverlay">
+        <button id="zoiToggleButton" class="button">≡</button>
+        <button id="vrToggleButton" class="button" onclick="toggleCam();">Mode 1</button>
+        <button id="infoToggleButton" class="button" onclick="">About Author</button>
+    </div>
+    <div id="zoiModal" class="modal">
+        <div id="zoiModal-content" class="modal-content">
+            <div id="zoiModal-close" style="flex:1;"><i class="fa fa-close"
+                    style="text-align: right; font-size: 25; width: 100%;"></i></div>
+        </div>
+    </div>
+    </div>
+    <div id="CVModal" class="modal">
+        <div id="CVModal-content">
+            <div id="CV-TextContent">
+                <div style="display: flex; width: 100%;">
+                    <div>
+                        <h1>Made by <span style="color: #db951a">Damien Jardon</span></h1>
+                        <h2>Mobile Tech Lead / DevRel</h2>
+                    </div>
+                    <div id="CV-close" style="flex:1;"><i class="fa fa-close"
+                            style="text-align: right; font-size: 25; width: 100%;"></i></div>
+                </div>
+                <div class="CV-Separator"></div>
+                <div>
+                    <p>This is a virtual Visit of the upper part of <span style="font-weight: bold;">Saint Guilhem le
+                            Désert</span> (South of France).</p>
+                    <p>On Mobile device, you can switch the view mode to enter VR.</p>
+                    <div class="CV-Separator"></div>
+                    <p>The photo capture is made on an iPhone 13 Pro with a modified version of the sample code <span
+                            style="font-weight: bold;">10076: Create 3D Models with Object Capture.</span></p>
+                    <p>The model is made from the 19.000 pictures with <span style="font-weight: bold;">Agisoft
+                            Metashape</span> and post process on <span style="font-weight: bold;">Blender</span> and
+                        <span style="font-weight: bold;">MeshLab</span>.
+                    </p>
+                    <p>The rendering engine is based on <span style="font-weight: bold;">BabylonJS</span>.</p>
+                </div>
+            </div>
+            <div id="CV-contact">
+                <div id="CV-ContactHeader">CONTACT ME</div>
+                <div style="display: flex; justify-content: space-evenly;">
+                    <button class="CV-ContactButton" onclick="window.open('mailto:damien.jardon@gmail.com');">E-Mail
+                        <i class="fa fa-envelope" style="color: white; font-size: 25;"></i>
+                    </button>
+                    <button class="CV-ContactButton"
+                        onclick="window.open('https://damienjardon.fr/assets/images/dev/DamienJardonEN.pdf', '_blank');">Resume
+                        <i class="fa fa-drivers-license" style="color: white; font-size: 25;"></i>
+                    </button>
+                    <button class="CV-ContactButton"
+                        onclick="window.open('https://www.linkedin.com/in/damien-jardon-17444483/', '_blank');"><img
+                            src="https://damienjardon.fr/assets/images/dev/Linkedin.png" width="57px"
+                            height="15px"></button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="infoModal" class="modal">
+        <div id="infoModal-content" style="display: flex; flex-direction: column;">
+            <div style="display: flex;">
+                <div id="info-Title"></div>
+                <div id="info-close" style="flex:1;"><i class="fa fa-close"
+                        style="text-align: right; font-size: 25; width: 100%;"></i></div>
+            </div>
+            <div class="CV-Separator"></div>
+            <div id="info-Text"></div>
+            <img id="info-Img" src="" width="100%" style="object-fit: contain; flex:1; max-height: 400px;">
+        </div>
+    </div>
+    <canvas id="renderCanvas"></canvas>
+    <script type="text/javascript" src="VRModel.js"></script>
+</body>
