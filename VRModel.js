@@ -443,9 +443,9 @@ function createNavigation() {
 }
 
 scene = createScene();
-createGUI();
-createHtmlGUI();
 createInfoButtons();
+createHtmlGUI();
+createNavigation();
 
 var currentZone = null;
 function checkCurrentInfoZone() { //make visible the infoButtons of the current zone
