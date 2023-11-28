@@ -17,7 +17,7 @@
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
     <script src="https://cdn.babylonjs.com/gui/babylon.gui.js"></script>
-    
+
     <!--- description of my scene --->
     <script src="scene.js"></script>
 
@@ -54,7 +54,10 @@
     </div>
     <div id="uiOverlay">
         <button id="zoiToggleButton" class="button">≡</button>
-        <button id="vrToggleButton" class="button" onclick="toggleCam();">Mode 1</button>
+        <div id="topRightButtons">
+            <button id="fullscreenToggleButton" class="button" onclick="toggleFullscreen();"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
+            <button id="vrToggleButton" class="button" onclick="toggleCam();">Mode 1</button>
+        </div>
         <button id="infoToggleButton" class="button" onclick="">About Author</button>
     </div>
     <div id="zoiModal" class="modal">

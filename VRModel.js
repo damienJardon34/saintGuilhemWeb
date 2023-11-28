@@ -33,6 +33,8 @@ function createScene() {
         let pipeline = new BABYLON.DefaultRenderingPipeline("defaultPipeline", true, scene, [camera]);
         pipeline.depthOfFieldEnabled = true;
         pipeline.depthOfFieldBlurLevel = 1.0;
+        pipeline.samples = 4;
+        pipeline.fxaaEnabled = true;
         scene.registerBeforeRender(function () {
             let origin = camera.position;
             let forward = vecToLocal(new BABYLON.Vector3(0, 0, 1), camera);
@@ -82,6 +84,7 @@ function createScene() {
         else {
             let loadingScreenDiv = window.document.getElementById("loadingScreen");
             loadingScreenDiv.style.display = "none";
+            
             goToZoneOfInterest(zoneOfInterets[defaultLocationIndex]);
         }
     }
@@ -277,6 +280,10 @@ function createNavigation() {
     let viewButton = document.getElementById('vrToggleButton');
     if (!isMobile) {
         viewButton.style.display = "none";
+    }
+    let fullscreenButton = document.getElementById('fullscreenToggleButton');
+    if (isMobile) {
+        fullscreenButton.style.display = "none";
     }
     function isVREnabled() {
         return (scene.activeCamera === VRCamera || scene.activeCamera === deviceOrientedCam);
@@ -531,5 +538,41 @@ engine.runRenderLoop(function () {
 });
 // the canvas/window resize event handler
 window.addEventListener('resize', function () {
-    engine.resize();
+    setTimeout(()=> {engine.resize();},100);
 });
+
+var fullscreen = false;
+var elem = document.documentElement;
+
+function toggleFullscreen() {
+    if (fullscreen){
+        fullscreen = false;
+        closeFullscreen();
+    }
+    else {
+        fullscreen = true;
+        openFullscreen();
+    }
+}
+
+/* View in fullscreen */
+function openFullscreen() {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+/* Close fullscreen */
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
