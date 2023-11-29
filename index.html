@@ -2,6 +2,16 @@
 <html>
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MBH6Q678C"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0MBH6Q678C');
+    </script>
+
     <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-title" content="St Guilhem">
@@ -57,7 +67,8 @@
     <div id="uiOverlay">
         <button id="zoiToggleButton" class="button">≡</button>
         <div id="topRightButtons">
-            <button id="fullscreenToggleButton" class="button" onclick="toggleFullscreen();"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>
+            <button id="fullscreenToggleButton" class="button" onclick="toggleFullscreen();"><i class="fa fa-arrows-alt"
+                    aria-hidden="true"></i></button>
             <button id="vrToggleButton" class="button" onclick="toggleCam();">Mode 1</button>
         </div>
         <button id="infoToggleButton" class="button" onclick="">About Author</button>
