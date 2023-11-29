@@ -538,7 +538,7 @@ engine.runRenderLoop(function () {
 });
 // the canvas/window resize event handler
 window.addEventListener('resize', function () {
-    setTimeout(()=> {engine.resize();},100);
+    setTimeout(()=> {engine.resize();},500);
 });
 
 var fullscreen = false;
